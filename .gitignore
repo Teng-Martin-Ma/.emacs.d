@@ -1,2 +1,0 @@
-# ignore the elpa packages which would install when first open emacs
-elpa/
