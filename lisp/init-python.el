@@ -6,13 +6,6 @@
   (pyvenv-mode 1)
   (pyvenv-activate "/home/martin/Software/miniconda3"))
 
-;; anaconda-mode eval-after
-(use-package company
-  :no-require t
-  :config
-  (use-package company-anaconda
-    :init
-    (add-to-list 'company-backends 'company-anaconda)))
 
 (use-package anaconda-mode
   :commands
@@ -20,5 +13,13 @@
   :init
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+
+;; anaconda-mode eval-after
+(use-package company
+  :no-require t
+  :config
+  (use-package company-anaconda
+    :init
+    (add-to-list 'company-backends 'company-anaconda)))
 
 (provide 'init-python)
