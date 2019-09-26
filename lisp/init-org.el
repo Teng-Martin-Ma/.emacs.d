@@ -30,13 +30,6 @@
       '(("t" "New TODO" entry (file+headline "~/Documents/agenda.org" "New entries")
          "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\")) DEADLINE: %(org-insert-time-stamp (org-read-date  nil t \"+0d\"))\n  *ADDRESS*: %i\n")))
 
-;; order todo list
-(setq org-agenda-sorting-strategy
-  (quote
-   ((agenda deadline-up priority-down)
-    (todo priority-down category-keep)
-    (tags priority-down category-keep)
-    (search category-keep))))
 
 ;; always agenda window
 (setq org-agenda-window-setup (quote current-window))
@@ -46,5 +39,17 @@
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((python . t)))
+
+
+;; agenda settings
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-timestamp-if-done t)
+(setq org-agenda-todo-ignore-scheduled t)
+(setq org-agenda-todo-ignore-deadlines t)
+(setq org-agenda-todo-ignore-timestamp t)
+(setq org-agenda-todo-ignore-with-date t)
+(setq org-agenda-start-on-weekday nil)
+
 
 (provide 'init-org)
