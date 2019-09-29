@@ -1,11 +1,20 @@
 ;; set anaconda env in emacs
 (use-package pyvenv
   :init
-  (setenv "WORKON_HOME" "/home/martin/Software/miniconda3/envs")
+  (setenv "WORKON_HOME" "/Users/martin/miniconda3")
   :config
   (pyvenv-mode 1)
-  (pyvenv-activate "/home/martin/Software/miniconda3"))
+  (pyvenv-activate "/Users/martin/miniconda3"))
 
+(use-package exec-path-from-shell
+  :init
+  (exec-path-from-shell-copy-env "PYTHONPATH")
+  :mode
+  (("\\.py\\'" . python-mode)
+   ("\\.org\\'" . org-mode))
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 (use-package anaconda-mode
   :commands
@@ -21,5 +30,8 @@
   (use-package company-anaconda
     :init
     (add-to-list 'company-backends 'company-anaconda)))
+
+;; Shift tab indent
+(define-key python-mode-map (kbd "<S-tab>") 'python-indent-shift-left)
 
 (provide 'init-python)

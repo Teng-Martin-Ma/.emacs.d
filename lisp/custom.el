@@ -4,11 +4,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-time-grid
+ '(org-agenda-files nil)
+ '(package-selected-packages
    (quote
-    ((daily weekly today require-timed)
-     (800 1000 1200 1400 1600 1800 2000)
-     "......" "----------------"))))
+    (use-package smartparens pyvenv expand-region exec-path-from-shell counsel company-anaconda))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

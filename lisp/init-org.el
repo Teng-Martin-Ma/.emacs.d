@@ -40,6 +40,8 @@
   'org-babel-load-languages
   '((python . t)))
 
+;; don't ask when evaluate
+(setq org-confirm-babel-evaluate nil)
 
 ;; agenda settings
 (setq org-agenda-skip-scheduled-if-done t)
