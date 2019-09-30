@@ -1,14 +1,21 @@
 ;; set anaconda env in emacs
 (use-package pyvenv
   :init
-  (setenv "WORKON_HOME" "/Users/martin/miniconda3")
+  (if (eq window-system 'darwin)
+    (setenv "WORKON_HOME" "/Users/martin/miniconda3")
+    (if (eq window-system 'windows-nt)
+      (setenv "WORKON_HOME" "/d/miniconda3")))
   :config
   (pyvenv-mode 1)
-  (pyvenv-activate "/Users/martin/miniconda3"))
+  (if (eq window-system 'darwin)
+    (pyvenv-activate "/Users/martin/miniconda3")
+    (if (eq window-system 'windows-nt)
+      (pyvenv-activate "/d/miniconda3"))))
 
 (use-package exec-path-from-shell
   :init
-  (exec-path-from-shell-copy-env "PYTHONPATH")
+  (if (eq window-system 'darwin)
+    (exec-path-from-shell-copy-env "PYTHONPATH"))
   :mode
   (("\\.py\\'" . python-mode)
    ("\\.org\\'" . org-mode))
