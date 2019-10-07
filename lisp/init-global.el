@@ -40,11 +40,14 @@
 ;; yes or no to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-
 ;; expand region
 (use-package expand-region
   :bind
   ("C-=" . 'er/expand-region))
+
+;; tab indent
+(setq-default tab-width 4
+              indent-tabs-mode nil)
 
 
 (provide 'init-global)

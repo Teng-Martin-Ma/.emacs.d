@@ -2,7 +2,7 @@
 (use-package org
   :ensure t
   :init
-  (setq org-agenda-files '("~/Documents/agenda.org")
+  (setq org-agenda-files '("~/Onedrive/agenda.org")
         org-src-fontify-natively t
         org-log-done 'time)
   :config
@@ -43,6 +43,21 @@
 ;; don't ask when evaluate
 (setq org-confirm-babel-evaluate nil)
 
+;; org-ref
+(use-package htmlize)
+(add-to-list 'load-path "~/.emacs.d/elpa/org-ref")
+(setq reftex-default-bibliography '("~/Documents/UCL/SAAD/reference.bib"))
+
+(setq org-ref-bibliography-notes "~/Documents/Notes/notes.org"
+      org-ref-default-bibliography '("~/Documents/UCL/SAAD/reference.bib")
+      org-ref-pdf-directory "~/Documents/Articles/")
+(setq bibtex-completion-bibliography "~/Documents/UCL/SAAD/reference.bib"
+      bibtex-completion-library-path "~/Documents/Articles/"
+      bibtex-completion-notes-path "~/Documents/Notes/")
+(setq org-ref-completion-library 'org-ref-ivy-cite)
+(require 'org-ref)
+
+
 ;; agenda settings
 (setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-skip-deadline-if-done t)
@@ -52,6 +67,9 @@
 (setq org-agenda-todo-ignore-timestamp t)
 (setq org-agenda-todo-ignore-with-date t)
 (setq org-agenda-start-on-weekday nil)
+
+;; set pdflatex path
+(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
 
 
 (provide 'init-org)
