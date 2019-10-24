@@ -1,16 +1,0 @@
-;; Emacs-W3 HTTP cookies file
-;; Automatically generated file!!! DO NOT EDIT!!!
-
-(setq url-cookie-storage
- '(("journals.aps.org"
-  [url-cookie "apsjournals.session" "BAh7CUkiD3Nlc3Npb25faWQGOgZFVEkiRWFlZmY2Yzk1NjA1MGNlY2Q3N2M4%0ANTU3ZDkxMzQ4YjhhMDQ1MGI5ZTkyZWFkNmZjMDIzYTYwNTZmMDU0YTI0OGMG%0AOwBGSSIHaWQGOwBGSSIpNTNlMzYwNzctZDYwNi00MTQwLThkZmUtYjNhOGZi%0AMjlmOWNmBjsARkkiCWNzcmYGOwBGSSJFNTI4MGMwM2IyZTA1YjljODJkZjhm%0AYzZjYzBhNjRhYWE2ODAwZGRlYzczNTg0NWViZGU5MjY4NjAzZjJhNGI4MAY7%0AAEZJIgtfZmxhc2gGOwBGewA%3D%0A--8a28867934e4150510c122740606fe8e510e151c" "Thu, 21 Nov 2019 20:42:54 -0000" "/" "journals.aps.org" nil])
- (".doi.org"
-  [url-cookie "__cfduid" "d0dbfd20d8b94ba749ece3b09467cf6a41571776972" "Wed, 21-Oct-20 20:42:52 GMT" "/" ".doi.org" nil]))
-)
-(setq url-cookie-secure-storage
- 'nil)
-
-;; Local Variables:
-;; version-control: never
-;; no-byte-compile: t
-;; End:
