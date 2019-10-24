@@ -13,15 +13,11 @@
       (pyvenv-activate "/d/miniconda3"))))
 
 (use-package exec-path-from-shell
-  :init
-  (if (eq window-system 'darwin)
-    (exec-path-from-shell-copy-env "PYTHONPATH"))
-  :mode
-  (("\\.py\\'" . python-mode)
-   ("\\.org\\'" . org-mode))
+  :if (memq window-system '(mac ns x))
+  :ensure t
   :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 (use-package anaconda-mode
   :commands

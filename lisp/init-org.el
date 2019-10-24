@@ -2,12 +2,14 @@
 (use-package org
   :ensure t
   :init
-  (setq org-agenda-files '("~/Onedrive/agenda.org")
+  (setq org-agenda-files '("~/Documents/Onedrive/agenda.org")
         org-src-fontify-natively t
         org-log-done 'time)
   :config
   (add-to-list 'org-structure-template-alist
-	       '("sp" "#+BEGIN_SRC python  :results output\n?\n#+END_SRC"))
+               '("sp" "#+BEGIN_SRC python  :results output\n?\n#+END_SRC"))
+  (add-to-list 'org-structure-template-alist
+               '("al" "#+attr_latex: :placement [H] :width 300\n?"))
   :bind
   ("C-c a" . 'org-agenda)
   ("C-c n" . org-capture))
@@ -27,7 +29,7 @@
 
 ;; capture template
 (setq org-capture-templates
-      '(("t" "New TODO" entry (file+headline "~/Documents/agenda.org" "New entries")
+      '(("t" "New TODO" entry (file+headline "~/Documents/Onedrive/agenda.org" "New entries")
          "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\")) DEADLINE: %(org-insert-time-stamp (org-read-date  nil t \"+0d\"))\n  *ADDRESS*: %i\n")))
 
 
@@ -38,13 +40,24 @@
 ;; enable python in src block
 (org-babel-do-load-languages
   'org-babel-load-languages
-  '((python . t)))
+  '((python . t)
+    (latex . t)))
 
 ;; don't ask when evaluate
 (setq org-confirm-babel-evaluate nil)
 
 ;; org-ref
-
+(setq org-ref-completion-library 'org-ref-ivy-cite)
+(setq reftex-default-bibliography '("~/Documents/Onedrive/references.bib"))
+(setq org-ref-bibliography-notes "~/Documents/Onedrive/notes.org"
+      org-ref-default-bibliography '("~/Documents/Onedrive/references.bib")
+      org-ref-pdf-directory "~/Documents/Articles/")
+(setq org-latex-pdf-process
+  '("pdflatex -interaction nonstopmode -output-directory %o %f"
+	"bibtex %b"
+	"pdflatex -interaction nonstopmode -output-directory %o %f"
+	"pdflatex -interaction nonstopmode -output-directory %o %f"))
+(require 'org-ref)
 
 
 ;; agenda settings
@@ -57,8 +70,6 @@
 (setq org-agenda-todo-ignore-with-date t)
 (setq org-agenda-start-on-weekday nil)
 
-;; set pdflatex path
-(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
 
 
 (provide 'init-org)
