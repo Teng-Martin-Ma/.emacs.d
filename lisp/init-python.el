@@ -34,7 +34,8 @@
     :init
     (add-to-list 'company-backends 'company-anaconda)))
 
-;; Shift tab indent
-(define-key python-mode-map (kbd "<S-tab>") 'python-indent-shift-left)
+;; ein
+(use-package ein
+  :ensure t)
 
 (provide 'init-python)

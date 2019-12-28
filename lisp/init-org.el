@@ -7,9 +7,25 @@
         org-log-done 'time)
   :config
   (add-to-list 'org-structure-template-alist
-               '("sp" "#+BEGIN_SRC python  :results output\n?\n#+END_SRC"))
+               '("p" "#+BEGIN_SRC python  :results output\n?\n#+END_SRC"))
   (add-to-list 'org-structure-template-alist
-               '("al" "#+attr_latex: :placement [H] :width 300\n?"))
+               '("ep" "#+BEGIN_SRC ein-python :session localhost :results raw drawer
+\\?
+\\#+END_SRC"))
+  (add-to-list 'org-structure-template-alist
+               '("t" "#+BEGIN_EXPORT latex
+\\begin{table}[!htb]
+\\centering
+\\caption{} \\label{tab:}
+\\begin{tabular}{ccc}
+\\toprule[1pt]
+head{} & \\head{} & \\head{}\\\\
+\\midrule[0.75pt]
+?
+\\bottomrule[1pt]
+\\end{tabular}
+\\end{table}
+#+END_EXPORT"))
   :bind
   ("C-c a" . 'org-agenda)
   ("C-c n" . org-capture))
@@ -41,12 +57,14 @@
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((python . t)
+    (ein . t)
     (latex . t)))
 
 ;; don't ask when evaluate
 (setq org-confirm-babel-evaluate nil)
 
 ;; org-ref
+(use-package org-ref)
 (setq org-ref-completion-library 'org-ref-ivy-cite)
 (setq reftex-default-bibliography '("~/Documents/Onedrive/references.bib"))
 (setq org-ref-bibliography-notes "~/Documents/Onedrive/notes.org"
@@ -57,7 +75,7 @@
 	"bibtex %b"
 	"pdflatex -interaction nonstopmode -output-directory %o %f"
 	"pdflatex -interaction nonstopmode -output-directory %o %f"))
-(require 'org-ref)
+
 
 
 ;; agenda settings

@@ -15,8 +15,11 @@
 (set-scroll-bar-mode nil)
 
 
-;; open in fullscreen
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
+;; solarize theme
+(use-package solarized-theme
+	:ensure t
+	:config
+	(load-theme 'solarized-dark t))
 
 
 (provide 'init-frame)
