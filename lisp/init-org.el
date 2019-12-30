@@ -1,4 +1,4 @@
-;; set org agenda files
+; set org agenda files
 (use-package org
   :ensure t
   :init
@@ -9,23 +9,23 @@
   (add-to-list 'org-structure-template-alist
                '("p" "#+BEGIN_SRC python  :results output\n?\n#+END_SRC"))
   (add-to-list 'org-structure-template-alist
-               '("ep" "#+BEGIN_SRC ein-python :session localhost :results raw drawer
-\\?
-\\#+END_SRC"))
+               '("ep" "#+BEGIN_SRC ein-python :session localhost :results raw drawer\n
+                       \\?\n
+                       \\#+END_SRC"))
   (add-to-list 'org-structure-template-alist
-               '("t" "#+BEGIN_EXPORT latex
-\\begin{table}[!htb]
-\\centering
-\\caption{} \\label{tab:}
-\\begin{tabular}{ccc}
-\\toprule[1pt]
-head{} & \\head{} & \\head{}\\\\
-\\midrule[0.75pt]
-?
-\\bottomrule[1pt]
-\\end{tabular}
-\\end{table}
-#+END_EXPORT"))
+               '("t" "#+BEGIN_EXPORT latex\n
+                      \\begin{table}[!htb]\n
+                      \\centering\n
+                      \\caption{} \\label{tab:}\n
+                      \\begin{tabular}{ccc}\n
+                      \\toprule[1pt]\n
+                      head{} & \\head{} & \\head{}\\\\
+                      \\midrule[0.75pt]\n
+                      ?\n
+                      \\bottomrule[1pt]\n
+                      \\end{tabular}\n
+                      \\end{table}\n
+                      #+END_EXPORT"))
   :bind
   ("C-c a" . 'org-agenda)
   ("C-c n" . org-capture))
@@ -43,39 +43,11 @@ head{} & \\head{} & \\head{}\\\\
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
+
 ;; capture template
 (setq org-capture-templates
       '(("t" "New TODO" entry (file+headline "~/Documents/Onedrive/agenda.org" "New entries")
          "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\")) DEADLINE: %(org-insert-time-stamp (org-read-date  nil t \"+0d\"))\n  *ADDRESS*: %i\n")))
-
-
-;; always agenda window
-(setq org-agenda-window-setup (quote current-window))
-
-
-;; enable python in src block
-(org-babel-do-load-languages
-  'org-babel-load-languages
-  '((python . t)
-    (ein . t)
-    (latex . t)))
-
-;; don't ask when evaluate
-(setq org-confirm-babel-evaluate nil)
-
-;; org-ref
-(use-package org-ref)
-(setq org-ref-completion-library 'org-ref-ivy-cite)
-(setq reftex-default-bibliography '("~/Documents/Onedrive/references.bib"))
-(setq org-ref-bibliography-notes "~/Documents/Onedrive/notes.org"
-      org-ref-default-bibliography '("~/Documents/Onedrive/references.bib")
-      org-ref-pdf-directory "~/Documents/Articles/")
-(setq org-latex-pdf-process
-  '("pdflatex -interaction nonstopmode -output-directory %o %f"
-	"bibtex %b"
-	"pdflatex -interaction nonstopmode -output-directory %o %f"
-	"pdflatex -interaction nonstopmode -output-directory %o %f"))
-
 
 
 ;; agenda settings
@@ -88,6 +60,35 @@ head{} & \\head{} & \\head{}\\\\
 (setq org-agenda-todo-ignore-with-date t)
 (setq org-agenda-start-on-weekday nil)
 
+;; always agenda window
+(setq org-agenda-window-setup (quote current-window))
+
+;--------------------------------------------------------------------------------------
+
+;; enable python in src block
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((python . t)
+    (latex . t)))
+
+;; don't ask when evaluate
+(setq org-confirm-babel-evaluate nil)
+
+
+;; org-ref
+(use-package org-ref
+  :ensure t
+  :init
+  (setq org-ref-completion-library 'org-ref-ivy-cite)
+  (setq reftex-default-bibliography '("~/Documents/Onedrive/references.bib"))
+  (setq org-ref-bibliography-notes "~/Documents/Onedrive/notes.org"
+        org-ref-default-bibliography '("~/Documents/Onedrive/references.bib")
+        org-ref-pdf-directory "~/Documents/Articles/")
+  (setq org-latex-pdf-process
+    '("pdflatex -interaction nonstopmode -output-directory %o %f"
+    "bibtex %b"
+    "pdflatex -interaction nonstopmode -output-directory %o %f"
+    "pdflatex -interaction nonstopmode -output-directory %o %f")))
 
 
 (provide 'init-org)

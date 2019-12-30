@@ -9,11 +9,6 @@
 ;; auto show parenthese
 (show-paren-mode 1)
 
-;; turn on global company mode
-(use-package company
-  :config
-  (global-company-mode t))
-
 ;; change cursor to bar
 (setq-default cursor-type 'bar)
 
@@ -26,11 +21,6 @@
 ;; highlight current line
 (global-hl-line-mode t)
 
-;; smart parens
-(use-package smartparens
-  :config
-  (smartparens-global-mode t))
-
 ;; change file outside but show in emacs
 (global-auto-revert-mode t)
 
@@ -40,10 +30,28 @@
 ;; yes or no to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
+
+
 ;; expand region
 (use-package expand-region
+  :ensure t
   :bind
   ("C-=" . 'er/expand-region))
 
+
+;; install global company mode
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode t)
+  (setq company-minimum-prefix-length 2)
+  (setq company-idle-delay 0.1))
+
+
+;; install ace-window to quick choose window
+(use-package ace-window
+  :ensure t
+  :bind
+  ("M-o" . 'ace-window))
 
 (provide 'init-global)
