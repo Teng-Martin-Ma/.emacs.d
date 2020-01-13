@@ -90,5 +90,11 @@
     "pdflatex -interaction nonstopmode -output-directory %o %f"
     "pdflatex -interaction nonstopmode -output-directory %o %f")))
 
+;; org-bullets
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'org-bullets-mode))
+
 
 (provide 'init-org)
