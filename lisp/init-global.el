@@ -31,7 +31,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
-
 ;; expand region
 (use-package expand-region
   :ensure t

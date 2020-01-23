@@ -76,6 +76,12 @@
 
 
 ;; org-ref
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
+
 (use-package org-ref
   :ensure t
   :init
@@ -85,10 +91,10 @@
         org-ref-default-bibliography '("~/Documents/Onedrive/references.bib")
         org-ref-pdf-directory "~/Documents/Articles/")
   (setq org-latex-pdf-process
-    '("pdflatex -interaction nonstopmode -output-directory %o %f"
-    "bibtex %b"
-    "pdflatex -interaction nonstopmode -output-directory %o %f"
-    "pdflatex -interaction nonstopmode -output-directory %o %f")))
+      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+        "bibtex %b"
+        "pdflatex -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -interaction nonstopmode -output-directory %o %f")))
 
 ;; org-bullets
 (use-package org-bullets
