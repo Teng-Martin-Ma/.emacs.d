@@ -1,6 +1,6 @@
 ;; Set the fonts
 (setq default-frame-alist
-      '((font . "Fira Code-14")
+      '((font . "Consolas-14")
 	(height . 30)
 	(width . 80)))
 

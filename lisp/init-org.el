@@ -1,10 +1,10 @@
 ; set org agenda files
 (use-package org
-  :ensure t
-  :init
-  (setq org-agenda-files '("~/Documents/Onedrive/agenda.org")
-        org-src-fontify-natively t
-        org-log-done 'time)
+    :ensure t
+    :init
+    (setq org-agenda-files '("~/Documents/Onedrive/agenda.org")
+          org-src-fontify-natively t
+          org-log-done 'time)
   :config
   (add-to-list 'org-structure-template-alist
                '("p" "#+BEGIN_SRC python  :results output\n?\n#+END_SRC"))
@@ -13,19 +13,20 @@
                        \\?\n
                        \\#+END_SRC"))
   (add-to-list 'org-structure-template-alist
-               '("t" "#+BEGIN_EXPORT latex\n
-                      \\begin{table}[!htb]\n
-                      \\centering\n
-                      \\caption{} \\label{tab:}\n
-                      \\begin{tabular}{ccc}\n
-                      \\toprule[1pt]\n
-                      head{} & \\head{} & \\head{}\\\\
-                      \\midrule[0.75pt]\n
-                      ?\n
-                      \\bottomrule[1pt]\n
-                      \\end{tabular}\n
-                      \\end{table}\n
-                      #+END_EXPORT"))
+               (list "t" (concat 
+                    "#+BEGIN_EXPORT latex\n"
+                    "\\begin{table}[!htb]\n"
+                    "\\centering\n"
+                    "\\caption{} \\label{tab:}\n"
+                    "\\begin{tabular}{ccc}\n"
+                    "\\toprule[1pt]\n"
+                    "\\head{} & \\head{} & \\head{}\\\\\n"
+                    "\\midrule[0.75pt]\n"
+                    "?\n"
+                    "\\bottomrule[1pt]\n"
+                    "\\end{tabular}\n"
+                    "\\end{table}\n"
+                    "#+END_EXPORT")))
   :bind
   ("C-c a" . 'org-agenda)
   ("C-c n" . org-capture))
