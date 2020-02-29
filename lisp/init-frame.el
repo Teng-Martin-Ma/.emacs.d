@@ -1,8 +1,15 @@
 ;; Set the fonts
 (setq default-frame-alist
-      '((font . "Consolas-14")
-	(height . 30)
-	(width . 80)))
+  '((height . 30)
+  	(width . 80)))
+
+(cond 
+  ((string-equal system-type "windows-nt")
+   (add-to-list 'default-frame-alist
+     '(font . "Consolas-14")))
+  ((string-equal system-type "darwin")
+   (add-to-list 'default-frame-alist
+     '(font . "Fira Code-16"))))
 
 
 ;; close the startup frame
